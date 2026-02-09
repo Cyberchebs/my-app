@@ -1,16 +1,40 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, IM_Fell_English, UnifrakturMaguntia, Libre_Baskerville, Cormorant_Garamond } from 'next/font/google'
+
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geist = Geist({ 
+  subsets: ['latin'],
+  variable: '--font-geist'
+})
+
+const imFell = IM_Fell_English({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-im-fell'
+})
+
+const unifraktur = UnifrakturMaguntia({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-unifraktur'
+})
+
+const libre = Libre_Baskerville({ 
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-libre'
+})
+
+const cormorant = Cormorant_Garamond({ 
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-cormorant'
+})
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +49,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geist.variable} ${imFell.variable} ${unifraktur.variable} ${libre.variable} ${cormorant.variable}`}
       >
-        {children}
+        <Navbar />
+       <main className="pt-20"> {/* or pt-16, pt-24 depending on navbar height */}
+          {children}
+        </main>
       </body>
     </html>
   );
